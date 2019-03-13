@@ -3,7 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include "person.h"
 #include "person.cpp"
 using namespace std;
 
