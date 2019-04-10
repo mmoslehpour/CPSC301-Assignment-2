@@ -3,25 +3,28 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <vector>
 #include "person.cpp"
 using namespace std;
 
 // declaring readData/ writeData
-void readData(Person employees[], int &n); // & pointer
-void writeData(Person employees[], int n);
+void readData(vector<Person> &emp, int &n); 
+void writeData(vector<Person> emp, int n);
 
 
 int main() {
-    // declaring variable and size
 	int n = 0;
-	Person employees[20];
+    // declaring variable and size
+	vector<Person> employees;
     // calling readData/ writeData
 	readData (employees, n);
 	writeData (employees, n);
+
+	return 0;
 }
 
 // reading data from input.txt
-void readData (Person employees[], int &n) {
+void readData (vector<Person> &emp, int &n) {
 
 	string fname, lname;
 	double hoursWorked, payRate;
@@ -40,19 +43,19 @@ void readData (Person employees[], int &n) {
 		P.setLastName (lname);
 		P.setHoursWorked (hoursWorked);
 		P.setPayRate (payRate);
-		employees[n] = P;
+		emp.__emplace_back(P);
 		n++;
 	}
 	file.close();
 }
 
 // writing data in output.txt
-void writeData (Person employees[], int n) {
+void writeData (vector<Person> emp, int n) {
 
 	ofstream file;
 	file.open("output.txt");
 	for (int i = 0; i < n; i++) {
-		file << employees[i].fullName() <<" "<< employees[i].totalPay() << endl;
+		file << emp[i].fullName() <<" "<< emp[i].totalPay() << endl;
 	}
 	file.close();
 }
